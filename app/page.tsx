@@ -7,8 +7,7 @@ import { useThemeStyles } from '@/app/hooks/useThemeStyles';
 import RoleSelectPopup from '@/app/components/common/RoleSelectPopup';
 import { AuthPopup } from '@/app/components/common/AuthPopup';
 import { UniversityRequestPopup } from '@/app/components/common/UniversityRequestPopup';
-// Временно закомментируем импорт аналитики
-// import { UniversityAnalytics } from '@/app/components/university/UniversityAnalytics';
+import { UniversityAnalytics } from '@/app/components/university/UniversityAnalytics';
 
 const features = [
   {
@@ -252,8 +251,13 @@ export default function LandingPage() {
 
       {/* В зависимости от активной вкладки отображаем соответствующий контент */}
       {activeTab === 'analytics' && (
-        // Временно скроем компонент аналитики
-        // <UniversityAnalytics />
+        <UniversityAnalytics
+          studentActivity={studentActivity}
+          eventsData={eventsData}
+          internshipStats={internshipStats}
+          employmentStats={employmentStats}
+          universityRanking={universityRanking}
+        />
       )}
     </div>
   );
