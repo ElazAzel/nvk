@@ -155,6 +155,13 @@ const analytics = {
   ]
 };
 
+// Определите типы вместо any
+interface FilterData {
+  keyword: string;
+  location: string;
+  // ... другие поля
+}
+
 export default function EmployerPage() {
   const { t } = useTranslation();
   const { getColorClass, getVariantClass } = useThemeStyles();
@@ -184,7 +191,8 @@ export default function EmployerPage() {
     console.log('Search query:', query);
   };
 
-  const handleFilter = (filters: any) => {
+  // Используйте типизированные параметры
+  const handleFilterChange = (filters: FilterData) => {
     console.log('Applied filters:', filters);
   };
 
@@ -261,7 +269,7 @@ export default function EmployerPage() {
             <SearchFilters
               type={activeTab === 'vacancies' ? 'vacancies' : 'candidates'}
               onSearch={handleSearch}
-              onFilter={handleFilter}
+              onFilter={handleFilterChange}
             />
           )}
 

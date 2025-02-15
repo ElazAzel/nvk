@@ -9,6 +9,16 @@ interface SearchFiltersProps {
   type: 'vacancies' | 'candidates';
 }
 
+interface FilterProps {
+  filters: {
+    keyword: string;
+    location: string;
+    category: string;
+    // ... другие поля фильтров
+  };
+  onChange: (filters: FilterProps['filters']) => void;
+}
+
 export function SearchFilters({ onSearch, onFilter, type }: SearchFiltersProps) {
   const { getColorClass, getVariantClass } = useThemeStyles();
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);

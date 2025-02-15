@@ -1,7 +1,6 @@
 "use client";
 
 import { useLanguage } from "@/app/contexts/LanguageContext";
-import { THEME_CLASSES } from "@/app/config/theme";
 
 const languages = [
   { code: 'ru', label: 'RU' },

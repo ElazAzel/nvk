@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useThemeStyles } from '@/app/hooks/useThemeStyles';
+import Image from 'next/image';
 
 const certificates = [
   {
@@ -54,10 +55,12 @@ export function Certificates() {
           className={`${getVariantClass('card', 'primary')} p-4 rounded-lg hover:shadow-lg transition-shadow`}
         >
           <div className="relative h-48 mb-4 rounded-lg overflow-hidden">
-            <img
+            <Image
               src={cert.image}
               alt={cert.name}
-              className="w-full h-full object-cover"
+              width={192}
+              height={192}
+              layout="responsive"
             />
             {cert.verified && (
               <div className="absolute top-2 right-2 bg-green-100 dark:bg-green-900 p-1 rounded-full">

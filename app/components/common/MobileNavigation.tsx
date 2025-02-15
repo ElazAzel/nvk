@@ -1,23 +1,6 @@
 "use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useTranslation } from '@/app/hooks/useTranslation';
-import { useThemeStyles } from '@/app/hooks/useThemeStyles';
-
-const studentNavItems = [
-  { path: '/student/dashboard', icon: 'home', label: 'nav.dashboard' },
-  { path: '/student/courses', icon: 'book', label: 'nav.courses' },
-  { path: '/student/progress', icon: 'chart', label: 'nav.progress' },
-  { path: '/student/profile', icon: 'user', label: 'nav.profile' }
-];
-
 export const MobileNavigation = () => {
-  const pathname = usePathname();
-  const { t } = useTranslation();
-  const { getColorClass } = useThemeStyles();
-
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 lg:hidden">
       <div className="flex justify-around items-center h-16">

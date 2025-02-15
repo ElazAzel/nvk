@@ -123,13 +123,16 @@ const mockAnalyticsData = {
 };
 
 export async function GET(request: Request) {
-  // Получаем период из query параметров
   const { searchParams } = new URL(request.url);
+  // Используем period или удаляем
   const period = searchParams.get('period') || 'year';
+  
+  // Используем period для фильтрации данных
+  const filteredData = period === 'year' ? mockAnalyticsData : {
+    ...mockAnalyticsData,
+    // Фильтруем данные по периоду
+  };
 
-  // Имитируем задержку сервера
   await new Promise(resolve => setTimeout(resolve, 1000));
-
-  // В реальном приложении здесь будет логика фильтрации данных по периоду
-  return NextResponse.json(mockAnalyticsData);
+  return NextResponse.json(filteredData);
 } 
