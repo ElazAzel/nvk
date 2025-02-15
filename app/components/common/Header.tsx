@@ -6,6 +6,15 @@ import { LanguageSelector } from './LanguageSelector';
 import { useLanguage } from '@/app/contexts/LanguageContext';
 import { useThemeStyles } from '@/app/hooks/useThemeStyles';
 
+// Добавляем типы для JSX
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      [elemName: string]: any;
+    }
+  }
+}
+
 interface WeatherData {
   temp: number;
   city: string;

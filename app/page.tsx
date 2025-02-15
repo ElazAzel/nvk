@@ -251,13 +251,7 @@ export default function LandingPage() {
 
       {/* В зависимости от активной вкладки отображаем соответствующий контент */}
       {activeTab === 'analytics' && (
-        <UniversityAnalytics
-          studentActivity={studentActivity}
-          eventsData={eventsData}
-          internshipStats={internshipStats}
-          employmentStats={employmentStats}
-          universityRanking={universityRanking}
-        />
+        <UniversityAnalytics />
       )}
     </div>
   );
