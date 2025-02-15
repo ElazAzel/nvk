@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from '@/app/contexts/ThemeContext';
 import { LanguageProvider } from '@/app/contexts/LanguageContext';
 import { Header } from '@/app/components/common/Header';
+import './utils/chartConfig';
 
 const inter = Inter({ subsets: ["latin"] });
 

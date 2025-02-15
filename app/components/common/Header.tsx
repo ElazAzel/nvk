@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageSelector } from './LanguageSelector';
 import { useLanguage } from '@/app/contexts/LanguageContext';
@@ -11,7 +11,7 @@ interface WeatherData {
   city: string;
 }
 
-export const Header = () => {
+export const Header: React.FC = () => {
   const [time, setTime] = useState<string | null>(null);
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
