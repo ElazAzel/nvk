@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageSelector } from './LanguageSelector';
 import { useLanguage } from '@/app/contexts/LanguageContext';
-import { useTranslation } from '@/app/hooks/useTranslation';
 import { useThemeStyles } from '@/app/hooks/useThemeStyles';
 
 interface WeatherData {
@@ -13,15 +12,12 @@ interface WeatherData {
 }
 
 export const Header = () => {
-  const [time, setTime] = useState<string>('');
+  const [time, setTime] = useState<string | null>(null);
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const { language } = useLanguage();
-  const { t } = useTranslation();
+  const { getColorClass } = useThemeStyles();
 
-  const { getColorClass, getVariantClass } = useThemeStyles();
-
-  // Обновление времени
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -37,7 +33,6 @@ export const Header = () => {
     return () => clearInterval(interval);
   }, [language]);
 
-  // Получение погоды (заглушка)
   useEffect(() => {
     const getWeather = async () => {
       // Здесь будет реальный API запрос
@@ -57,9 +52,7 @@ export const Header = () => {
       border-b ${getColorClass('border.primary')}
     `}>
       <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-end">
-        {/* Правая часть */}
         <div className="flex items-center gap-6">
-          {/* Погода */}
           {weather && (
             <div className={`flex items-center gap-2 text-sm ${getColorClass('text.secondary')}`}>
               <svg
@@ -76,20 +69,19 @@ export const Header = () => {
                 />
               </svg>
               <span>{weather.temp}°C</span>
-              <span className={getColorClass('text.tertiary')}>|</span>
+              <span className={`${getColorClass('text.tertiary')}`}>|</span>
               <span>{weather.city}</span>
             </div>
           )}
 
-          {/* Время */}
-          <div className={`text-sm ${getColorClass('text.secondary')}`}>
-            {time}
-          </div>
+          {time && (
+            <div className={`text-sm ${getColorClass('text.secondary')}`}>
+              {time}
+            </div>
+          )}
 
-          {/* Переключатель темы */}
           <ThemeToggle />
 
-          {/* Выбор языка */}
           <div className="relative">
             <button
               onClick={() => setIsLanguageOpen(!isLanguageOpen)}

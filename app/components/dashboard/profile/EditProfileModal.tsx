@@ -1,10 +1,26 @@
 "use client";
 import { useState } from 'react';
 
+interface Profile {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  linkedin: string;
+  github: string;
+  about: string;
+}
+
 interface EditProfileModalProps {
   isOpen: boolean;
   onClose: () => void;
-  profile: any;
+  profile: Profile;
+}
+
+interface FormData {
+  name: string;
+  email: string;
+  // ... другие поля
 }
 
 export default function EditProfileModal({ isOpen, onClose, profile }: EditProfileModalProps) {

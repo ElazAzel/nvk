@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { AnalyticsData } from '@/app/types/analytics';
 
 interface UseAnalyticsReturn {
@@ -15,7 +15,7 @@ export const useAnalytics = (period: string): UseAnalyticsReturn => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
@@ -34,11 +34,11 @@ export const useAnalytics = (period: string): UseAnalyticsReturn => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [period]);
 
   useEffect(() => {
     fetchData();
-  }, [period]);
+  }, [fetchData]);
 
   return { data, isLoading, error, refetch: fetchData };
 }; 

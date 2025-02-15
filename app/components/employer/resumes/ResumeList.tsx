@@ -1,5 +1,7 @@
 "use client";
 
+import Image from 'next/image'
+
 interface Resume {
   id: number;
   name: string;
@@ -58,10 +60,12 @@ export default function ResumeList() {
         >
           <div className="flex items-start gap-4">
             <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
-              <img
+              <Image
                 src={resume.photo}
                 alt={resume.name}
-                className="w-full h-full object-cover"
+                width={64}
+                height={64}
+                layout="responsive"
               />
             </div>
             
