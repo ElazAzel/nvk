@@ -1,131 +1,89 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { ThemeToggle } from './ThemeToggle';
-import { LanguageSelector } from './LanguageSelector';
-import { useLanguage } from '@/app/contexts/LanguageContext';
-import { useThemeStyles } from '@/app/hooks/useThemeStyles';
+import Logo from './Logo';
+import { SearchBar } from './SearchBar';
+import { NotificationBell } from './NotificationBell';
+import { UserMenu } from './UserMenu';
 
-// Добавляем типы для JSX
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      [elemName: string]: any;
-    }
-  }
-}
-
-interface WeatherData {
-  temp: number;
-  city: string;
-}
-
-export const Header: React.FC = () => {
-  const [time, setTime] = useState<string | null>(null);
-  const [weather, setWeather] = useState<WeatherData | null>(null);
-  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
-  const { language } = useLanguage();
-  const { getColorClass } = useThemeStyles();
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const timeString = now.toLocaleTimeString(language, {
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-      setTime(timeString);
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, [language]);
-
-  useEffect(() => {
-    const getWeather = async () => {
-      // Здесь будет реальный API запрос
-      setWeather({
-        temp: 23,
-        city: 'Астана'
-      });
-    };
-
-    getWeather();
-  }, []);
+export function Header() {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className={`
-      fixed top-0 left-0 right-0 h-16 z-50
-      ${getColorClass('background.primary')}
-      border-b ${getColorClass('border.primary')}
-    `}>
-      <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-end">
-        <div className="flex items-center gap-6">
-          {weather && (
-            <div className={`flex items-center gap-2 text-sm ${getColorClass('text.secondary')}`}>
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
-                />
-              </svg>
-              <span>{weather.temp}°C</span>
-              <span className={`${getColorClass('text.tertiary')}`}>|</span>
-              <span>{weather.city}</span>
+    <motion.header 
+      className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center">
+            <Link href="/" className="flex-shrink-0">
+              <Logo />
+            </Link>
+            <div className="hidden md:block ml-10">
+              <SearchBar />
             </div>
-          )}
+          </div>
 
-          {time && (
-            <div className={`text-sm ${getColorClass('text.secondary')}`}>
-              {time}
-            </div>
-          )}
+          <div className="hidden md:flex items-center space-x-4">
+            <NotificationBell />
+            <ThemeToggle />
+            <UserMenu />
+          </div>
 
-          <ThemeToggle />
-
-          <div className="relative">
+          <div className="md:hidden">
             <button
-              onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-              className={`
-                flex items-center gap-1 text-sm
-                ${getColorClass('text.secondary')}
-                ${getColorClass('hover.text')}
-              `}
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 
+                dark:hover:text-gray-300 dark:hover:bg-gray-700"
             >
-              <span className="uppercase">{language}</span>
+              <span className="sr-only">Открыть меню</span>
+              {/* Иконка меню */}
               <svg
-                className={`w-4 h-4 transition-transform ${
-                  isLanguageOpen ? 'rotate-180' : ''
-                }`}
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
+                {isOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
               </svg>
             </button>
-
-            {isLanguageOpen && (
-              <div className="absolute right-0 mt-2 w-40 py-2">
-                <LanguageSelector />
-              </div>
-            )}
           </div>
         </div>
       </div>
-    </header>
+
+      {/* Мобильное меню */}
+      {isOpen && (
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <SearchBar />
+            <div className="flex items-center justify-around py-4">
+              <NotificationBell />
+              <ThemeToggle />
+              <UserMenu />
+            </div>
+          </div>
+        </div>
+      )}
+    </motion.header>
   );
-}; 
+} 

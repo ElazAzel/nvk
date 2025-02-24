@@ -3,6 +3,12 @@ import StudentPerformance from "@/app/components/dashboard/university/reports/St
 import ProgramEffectiveness from "@/app/components/dashboard/university/reports/ProgramEffectiveness";
 import EmploymentStats from "@/app/components/dashboard/university/reports/EmploymentStats";
 
+const reportTypes = {
+  employment: ['Трудоустройство', 'Стажировки', 'Карьерный рост'],
+  academic: ['Успеваемость', 'Посещаемость', 'Активность'],
+  engagement: ['Мероприятия', 'Проекты', 'Менторство'],
+};
+
 export default function UniversityReportsPage() {
   return (
     <div className="space-y-8">

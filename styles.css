@@ -1,0 +1,39 @@
+/* Улучшение доступности */
+:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
+/* Улучшение читаемости текста */
+p, li, td, th {
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Адаптивные медиа-запросы */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    .desktop-only {
+        display: none;
+    }
+}
+
+/* Улучшение интерактивных элементов */
+button, .btn {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+button:hover, .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+} 

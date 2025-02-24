@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from 'next-themes';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,7 +11,9 @@ import {
   Legend
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 
+// Регистрируем компоненты Chart.js
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -23,41 +26,60 @@ ChartJS.register(
 interface BarChartProps {
   data: {
     labels: string[];
-    datasets: Array<{
+    datasets: {
       label: string;
       data: number[];
-      backgroundColor?: string | string[];
-    }>;
+      backgroundColor: string[];
+    }[];
   };
+  options?: any;
 }
 
-export function BarChart({ data }: BarChartProps) {
-  const options = {
+export function BarChart({ data, options = {} }: BarChartProps) {
+  const { theme } = useTheme();
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
+  const defaultOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
+        display: !isMobile,
         position: 'top' as const,
-      }
+        labels: {
+          color: theme === 'dark' ? '#e5e7eb' : '#374151',
+        },
+      },
     },
     scales: {
       y: {
         beginAtZero: true,
         grid: {
-          color: 'rgba(200, 200, 200, 0.1)'
-        }
+          color: theme === 'dark' ? '#374151' : '#e5e7eb',
+        },
+        ticks: {
+          color: theme === 'dark' ? '#e5e7eb' : '#374151',
+          display: !isMobile,
+        },
       },
       x: {
         grid: {
-          display: false
-        }
-      }
-    }
+          display: false,
+        },
+        ticks: {
+          color: theme === 'dark' ? '#e5e7eb' : '#374151',
+        },
+      },
+    },
+    animation: {
+      duration: 750,
+      easing: 'easeInOutQuart',
+    },
   };
 
   return (
-    <div className="h-64">
-      <Bar options={options} data={data} />
+    <div className="relative h-full w-full">
+      <Bar data={data} options={{ ...defaultOptions, ...options }} />
     </div>
   );
 } 

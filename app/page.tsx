@@ -8,6 +8,9 @@ import RoleSelectPopup from '@/app/components/common/RoleSelectPopup';
 import { AuthPopup } from '@/app/components/common/AuthPopup';
 import { UniversityRequestPopup } from '@/app/components/common/UniversityRequestPopup';
 import { UniversityAnalytics } from '@/app/components/university/UniversityAnalytics';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 const features = [
   {
@@ -118,7 +121,7 @@ export default function LandingPage() {
   const [isRolePopupOpen, setIsRolePopupOpen] = useState(false);
   const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
   const [isUniversityRequestOpen, setIsUniversityRequestOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [activeTab, setActiveTab] = useState('overview');
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
@@ -126,42 +129,103 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero секция */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="pt-16 pb-20 lg:pt-24 lg:pb-28">
-            <div className="text-center">
-              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold text-white mb-4">
-                NAVYK
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        {/* Градиентный фон */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 opacity-10 dark:opacity-20" />
+        
+        {/* Декоративные элементы */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
+          <div className="absolute top-0 right-1/4 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
+          <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Левая колонка с текстом */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center lg:text-left"
+            >
+              <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+                Экосистема карьерного развития NAVYK
               </h1>
-              <p className="text-xl sm:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto">
-                {t('landing.hero.subtitle')}
+              
+              <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+                NAVYK - это платформа, которая соединяет студентов, работодателей и университеты, предоставляя возможности для обучения, стажировок и карьерного роста.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
+
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 
+                    transition-colors flex items-center justify-center gap-2"
                   onClick={() => setIsRolePopupOpen(true)}
-                  className="px-8 py-4 bg-white text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-colors"
                 >
-                  {t('landing.hero.tryDemo')}
-                </button>
-                <button
+                  Начать обучение
+                  <ArrowRightIcon className="w-5 h-5" />
+                </motion.button>
+                
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-6 py-3 border border-gray-300 dark:border-gray-600 
+                    rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                   onClick={() => setIsAuthPopupOpen(true)}
-                  className="px-8 py-4 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-400 transition-colors"
                 >
-                  {t('landing.hero.getStarted')}
-                </button>
-                <button
-                  onClick={() => setIsUniversityRequestOpen(true)}
-                  className="px-8 py-4 bg-blue-700 text-white rounded-lg font-medium hover:bg-blue-600 transition-colors"
-                >
-                  {t('landing.hero.connectUniversity')}
-                </button>
+                  Узнать больше
+                </motion.button>
               </div>
-            </div>
+
+              {/* Статистика */}
+              <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 gap-6">
+                {[
+                  { value: '10K+', label: 'Студентов' },
+                  { value: '500+', label: 'Курсов' },
+                  { value: '95%', label: 'Трудоустройство' }
+                ].map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + index * 0.1 }}
+                    className="text-center"
+                  >
+                    <div className="text-3xl font-bold text-gray-900 dark:text-white">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Правая колонка с иллюстрацией */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="relative lg:block"
+            >
+              <div className="relative w-full h-[400px] md:h-[500px]">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl" />
+                <Image
+                  src="/hero-illustration.svg"
+                  alt="NAVYK Platform"
+                  fill
+                  className="object-contain p-8"
+                  priority
+                />
+              </div>
+            </motion.div>
           </div>
         </div>
-        {/* Декоративный фон */}
-        <div className="absolute inset-0 bg-grid-white/10 bg-[size:20px_20px] pointer-events-none" />
       </div>
 
       {/* Статистика */}

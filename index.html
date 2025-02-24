@@ -1,0 +1,77 @@
+<head>
+    <!-- Добавляем критические стили для быстрой отрисовки -->
+    <style>
+        /* Критические стили для первого экрана */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        /* Скелетная анимация для контента */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оптимизированное название сайта | Ключевые слова</title>
+    <meta name="description" content="Уникальное и информативное описание страницы в пределах 150-160 символов с ключевыми словами">
+    <meta name="keywords" content="ключевое слово 1, ключевое слово 2, ключевая фраза">
+    
+    <!-- Open Graph для социальных сетей -->
+    <meta property="og:title" content="Оптимизированное название сайта">
+    <meta property="og:description" content="Уникальное и информативное описание страницы для социальных сетей">
+    <meta property="og:image" content="https://example.com/images/og-image.jpg">
+    <meta property="og:url" content="https://example.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Оптимизированное название сайта">
+    <meta name="twitter:description" content="Уникальное и информативное описание страницы для Twitter">
+    <meta name="twitter:image" content="https://example.com/images/twitter-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://example.com/current-page">
+    
+    <!-- Структурированные данные -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Название компании",
+        "url": "https://example.com",
+        "logo": "https://example.com/images/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+7-123-456-7890",
+            "contactType": "customer service"
+        }
+    }
+    </script>
+    
+    <!-- Предзагрузка критических ресурсов -->
+    <link rel="preload" href="/fonts/roboto.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/css/critical.css" as="style">
+    <link rel="preload" href="/js/critical.js" as="script">
+    
+    <!-- Асинхронная загрузка некритических стилей -->
+    <link rel="stylesheet" href="/css/non-critical.css" media="print" onload="this.media='all'">
+</head>
+<body>
+    <!-- Отложенная загрузка скриптов -->
+    <script src="/js/analytics.js" defer></script>
+    <script src="/js/non-critical.js" defer></script>
+</body> 

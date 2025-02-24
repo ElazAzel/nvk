@@ -1,3 +1,5 @@
+"use client";
+
 import AnalyticsOverview from "@/app/components/dashboard/university/analytics/AnalyticsOverview";
 import EnrollmentTrends from "@/app/components/dashboard/university/analytics/EnrollmentTrends";
 import AcademicPerformance from "@/app/components/dashboard/university/analytics/AcademicPerformance";
@@ -5,7 +7,27 @@ import CareerOutcomes from "@/app/components/dashboard/university/analytics/Care
 import FacultyAnalytics from "@/app/components/dashboard/university/analytics/FacultyAnalytics";
 import { type NextPage } from 'next';
 
+interface AnalyticsFilters {
+  dateRange: {
+    start: Date;
+    end: Date;
+  };
+  departments: string[];
+  courses: string[];
+  metrics: string[];
+}
+
 const UniversityAnalyticsPage: NextPage = () => {
+  const analyticsFilters: AnalyticsFilters = {
+    dateRange: {
+      start: new Date(),
+      end: new Date(),
+    },
+    departments: [],
+    courses: [],
+    metrics: [],
+  };
+
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-center">

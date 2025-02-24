@@ -1,0 +1,120 @@
+/* Базовые стили для всех устройств */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* Гибкая сетка */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.col {
+    padding: 0 15px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Адаптивные изображения */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Медиа-запросы для разных устройств */
+
+/* Большие десктопы */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+    
+    .hide-on-desktop {
+        display: none;
+    }
+}
+
+/* Средние десктопы и ноутбуки */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+/* Планшеты */
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    .col-tablet-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    .col-tablet-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+/* Мобильные устройства */
+@media (max-width: 767px) {
+    .container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .col-mobile-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .hide-on-mobile {
+        display: none;
+    }
+    
+    /* Увеличиваем размер интерактивных элементов для тач-устройств */
+    button, .btn, a {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Адаптивное меню */
+    .mobile-menu {
+        display: block;
+    }
+    
+    .desktop-menu {
+        display: none;
+    }
+    
+    /* Увеличиваем размер шрифта для лучшей читаемости */
+    body {
+        font-size: 16px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+}
+
+/* Маленькие мобильные устройства */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 22px;
+    }
+    
+    .small-mobile-stack {
+        flex-direction: column;
+    }
+} 

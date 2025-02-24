@@ -25,12 +25,12 @@ ChartJS.register(
 interface LineChartProps {
   data: {
     labels: string[];
-    datasets: Array<{
+    datasets: {
       label: string;
       data: number[];
-      borderColor?: string;
-      backgroundColor?: string;
-    }>;
+      borderColor: string;
+      backgroundColor: string;
+    }[];
   };
 }
 
@@ -41,26 +41,22 @@ export function LineChart({ data }: LineChartProps) {
     plugins: {
       legend: {
         position: 'top' as const,
-      }
+        display: window.innerWidth > 768,
+      },
     },
     scales: {
       y: {
         beginAtZero: true,
-        grid: {
-          color: 'rgba(200, 200, 200, 0.1)'
-        }
-      },
-      x: {
-        grid: {
-          color: 'rgba(200, 200, 200, 0.1)'
+        ticks: {
+          display: window.innerWidth > 480,
         }
       }
     }
   };
 
   return (
-    <div className="h-64">
-      <Line options={options} data={data} />
+    <div className="relative h-[300px] sm:h-[400px]">
+      <Line data={data} options={options} />
     </div>
   );
 } 

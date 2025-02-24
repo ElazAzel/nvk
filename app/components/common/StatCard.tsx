@@ -1,46 +1,48 @@
 "use client";
 
-import { useThemeStyles } from '@/app/hooks/useThemeStyles';
+import { motion } from 'framer-motion';
+import { Tooltip } from './Tooltip';
+import { InfoButton } from './InfoButton';
 
-interface StatCardProps {
-  icon?: React.ReactNode;
+type StatCardProps = {
   title: string;
-  value: string | number;
-  change?: {
-    value: string | number;
-    type: 'increase' | 'decrease';
-  };
-}
+  value: string;
+  change: string;
+  icon: React.ComponentType<{ className?: string }>;
+  trend: 'up' | 'down' | 'neutral';
+};
 
-export function StatCard({ icon, title, value, change }: StatCardProps) {
-  const { getColorClass, getVariantClass } = useThemeStyles();
-
+export function StatCard({ title, value, change, icon: Icon, trend }: StatCardProps) {
   return (
-    <div className={`${getVariantClass('card', 'primary')} p-4 rounded-lg`}>
-      <div className="flex items-center gap-3 mb-2">
-        {icon && (
-          <div className={`${getColorClass('text.primary')}`}>
-            {icon}
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm
+        hover:shadow-lg transition-all duration-200"
+    >
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <div className={`
+            p-3 rounded-lg
+            ${trend === 'up' ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' :
+              trend === 'down' ? 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400' :
+              'bg-gray-100 dark:bg-gray-700/30 text-gray-600 dark:text-gray-400'}
+          `}>
+            <Icon className="w-6 h-6" />
           </div>
-        )}
-        <h3 className={`text-sm font-medium ${getColorClass('text.secondary')}`}>
-          {title}
-        </h3>
+          <div>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{title}</p>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{value}</h3>
+          </div>
+        </div>
+        <div className={`
+          text-sm font-medium
+          ${trend === 'up' ? 'text-green-600 dark:text-green-400' :
+            trend === 'down' ? 'text-red-600 dark:text-red-400' :
+            'text-gray-600 dark:text-gray-400'}
+        `}>
+          {change}
+        </div>
       </div>
-      <div className="flex items-end justify-between">
-        <p className={`text-2xl font-semibold ${getColorClass('text.primary')}`}>
-          {value}
-        </p>
-        {change && (
-          <span
-            className={`text-sm ${
-              change.type === 'increase' ? 'text-green-500' : 'text-red-500'
-            }`}
-          >
-            {change.type === 'increase' ? '+' : '-'}{change.value}
-          </span>
-        )}
-      </div>
-    </div>
+    </motion.div>
   );
 } 
