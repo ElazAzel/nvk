@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Критические стили -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас | Информация о компании</title>
+    <meta name="description" content="Узнайте больше о нашей компании, нашей истории, миссии и ценностях. Мы стремимся предоставлять качественные услуги с 2010 года.">
+    
+    <!-- Open Graph для социальных сетей -->
+    <meta property="og:title" content="О нас | Информация о компании">
+    <meta property="og:description" content="Узнайте больше о нашей компании, нашей истории, миссии и ценностях.">
+    <meta property="og:image" content="https://example.com/images/about-og-image.jpg">
+    <meta property="og:url" content="https://example.com/about">
+    <meta property="og:type" content="website">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://example.com/about">
+    
+    <!-- Предзагрузка критических ресурсов -->
+    <link rel="preload" href="/fonts/roboto.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/css/critical.css" as="style">
+    
+    <!-- Стили -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/images/logo.svg" alt="Логотип компании" width="150" height="50">
+                    </a>
+                </div>
+                
+                <nav class="desktop-menu hide-on-mobile">
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about" aria-current="page">О нас</a></li>
+                        <li><a href="/services">Услуги</a></li>
+                        <li><a href="/contact">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="menu-toggle hide-on-desktop" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="sr-only">Меню</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-menu" id="mobile-menu">
+            <nav>
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/about" aria-current="page">О нас</a></li>
+                    <li><a href="/services">Услуги</a></li>
+                    <li><a href="/contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="container">
+                <h1>О нашей компании</h1>
+                <p class="lead">Мы стремимся к совершенству во всем, что делаем</p>
+            </div>
+        </section>
+        
+        <section class="about-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-tablet-12 col-mobile-12">
+                        <h2>Наша история</h2>
+                        <p>Компания была основана в 2010 году группой энтузиастов, объединенных общей идеей создания инновационных решений для бизнеса. За прошедшие годы мы выросли из небольшого стартапа в крупную компанию с офисами в нескольких городах.</p>
+                        
+                        <p>Наш путь не всегда был легким, но благодаря упорству, профессионализму и постоянному стремлению к совершенствованию, мы смогли занять лидирующие позиции в своей отрасли.</p>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col col-tablet-6 col-mobile-12">
+                        <h2>Наша миссия</h2>
+                        <p>Мы стремимся предоставлять инновационные решения, которые помогают нашим клиентам достигать успеха в их бизнесе. Наша цель — быть надежным партнером, который всегда готов предложить оптимальное решение для любой задачи.</p>
+                    </div>
+                    
+                    <div class="col col-tablet-6 col-mobile-12">
+                        <h2>Наши ценности</h2>
+                        <ul>
+                            <li><strong>Качество</strong> — мы не идем на компромиссы, когда речь идет о качестве наших продуктов и услуг.</li>
+                            <li><strong>Инновации</strong> — мы постоянно ищем новые подходы и технологии для решения задач наших клиентов.</li>
+                            <li><strong>Клиентоориентированность</strong> — потребности и интересы клиента всегда на первом месте.</li>
+                            <li><strong>Командная работа</strong> — мы верим, что только вместе можно достичь выдающихся результатов.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="team-section">
+                    <h2>Наша команда</h2>
+                    <div class="row">
+                        <div class="col col-tablet-6 col-mobile-12">
+                            <div class="team-member">
+                                <img data-src="/images/team/member1.jpg" alt="Иван Иванов" class="skeleton" width="300" height="300">
+                                <h3>Иван Иванов</h3>
+                                <p class="position">Генеральный директор</p>
+                                <p>Более 15 лет опыта в управлении IT-проектами. Отвечает за стратегическое развитие компании.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col col-tablet-6 col-mobile-12">
+                            <div class="team-member">
+                                <img data-src="/images/team/member2.jpg" alt="Мария Петрова" class="skeleton" width="300" height="300">
+                                <h3>Мария Петрова</h3>
+                                <p class="position">Технический директор</p>
+                                <p>Эксперт в области разработки программного обеспечения с опытом более 10 лет.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col col-tablet-6 col-mobile-12">
+                    <h3>О компании</h3>
+                    <p>Мы предоставляем инновационные решения для бизнеса с 2010 года.</p>
+                </div>
+                
+                <div class="col col-tablet-6 col-mobile-12">
+                    <h3>Контакты</h3>
+                    <address>
+                        <p>Адрес: г. Москва, ул. Примерная, д. 123</p>
+                        <p>Телефон: <a href="tel:+71234567890">+7 (123) 456-78-90</a></p>
+                        <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Название компании. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <script src="/js/main.js" defer></script>
+    <script src="/js/responsive.js" defer></script>
+    <script src="/js/performance.js" defer></script>
+</body>
+</html> 

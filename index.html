@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Добавляем критические стили для быстрой отрисовки -->
+    <style>
+        /* Критические стили для первого экрана */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        /* Скелетная анимация для контента */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная | Инновационные решения для бизнеса</title>
+    <meta name="description" content="Мы предлагаем инновационные решения для бизнеса, которые помогают нашим клиентам достигать успеха и развиваться.">
+    
+    <!-- Open Graph для социальных сетей -->
+    <meta property="og:title" content="Главная | Инновационные решения для бизнеса">
+    <meta property="og:description" content="Мы предлагаем инновационные решения для бизнеса, которые помогают нашим клиентам достигать успеха.">
+    <meta property="og:image" content="https://example.com/images/home-og-image.jpg">
+    <meta property="og:url" content="https://example.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Главная | Инновационные решения для бизнеса">
+    <meta name="twitter:description" content="Мы предлагаем инновационные решения для бизнеса, которые помогают нашим клиентам достигать успеха.">
+    <meta name="twitter:image" content="https://example.com/images/home-twitter-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://example.com">
+    
+    <!-- Структурированные данные -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Название компании",
+        "url": "https://example.com",
+        "logo": "https://example.com/images/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+7-123-456-7890",
+            "contactType": "customer service"
+        }
+    }
+    </script>
+    
+    <!-- Предзагрузка критических ресурсов -->
+    <link rel="preload" href="/fonts/roboto.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/css/critical.css" as="style">
+    
+    <!-- Стили -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/images/logo.svg" alt="Логотип компании" width="150" height="50">
+                    </a>
+                </div>
+                
+                <nav class="desktop-menu hide-on-mobile">
+                    <ul>
+                        <li><a href="/" aria-current="page">Главная</a></li>
+                        <li><a href="/about">О нас</a></li>
+                        <li><a href="/services">Услуги</a></li>
+                        <li><a href="/contact">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="menu-toggle hide-on-desktop" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="sr-only">Меню</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-menu" id="mobile-menu">
+            <nav>
+                <ul>
+                    <li><a href="/" aria-current="page">Главная</a></li>
+                    <li><a href="/about">О нас</a></li>
+                    <li><a href="/services">Услуги</a></li>
+                    <li><a href="/contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="container">
+                <h1>Инновационные решения для вашего бизнеса</h1>
+                <p class="lead">Мы помогаем компаниям расти и развиваться с помощью современных технологий</p>
+                <div class="hero-buttons">
+                    <a href="/services" class="btn btn-primary">Наши услуги</a>
+                    <a href="/contact" class="btn btn-secondary">Связаться с нами</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="features-section">
+            <div class="container">
+                <h2>Почему выбирают нас</h2>
+                <div class="row">
+                    <div class="col col-tablet-4 col-mobile-12">
+                        <div class="feature-item">
+                            <i class="icon icon-quality"></i>
+                            <h3>Качество</h3>
+                            <p>Мы гарантируем высокое качество всех наших продуктов и услуг, соответствующее международным стандартам.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col col-tablet-4 col-mobile-12">
+                        <div class="feature-item">
+                            <i class="icon icon-innovation"></i>
+                            <h3>Инновации</h3>
+                            <p>Мы постоянно следим за новейшими технологиями и внедряем их в наши решения для достижения максимальной эффективности.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col col-tablet-4 col-mobile-12">
+                        <div class="feature-item">
+                            <i class="icon icon-support"></i>
+                            <h3>Поддержка</h3>
+                            <p>Наша команда поддержки всегда готова помочь вам решить любые вопросы и обеспечить бесперебойную работу систем.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="services-preview">
+            <div class="container">
+                <h2>Наши услуги</h2>
+                <div class="row">
+                    <div class="col col-tablet-6 col-mobile-12">
+                        <div class="service-preview-item">
+                            <img data-src="/images/services/service1.jpg" alt="Разработка программного обеспечения" class="skeleton" width="500" height="300">
+                            <h3>Разработка программного обеспечения</h3>
+                            <p>Создаем современные, надежные и масштабируемые программные решения для вашего бизнеса.</p>
+                            <a href="/services/software-development" class="btn">Подробнее</a>
+                        </div>
+                    </div>
+                    
+                    <div class="col col-tablet-6 col-mobile-12">
+                        <div class="service-preview-item">
+                            <img data-src="/images/services/service2.jpg" alt="IT-консалтинг" class="skeleton" width="500" height="300">
+                            <h3>IT-консалтинг</h3>
+                            <p>Помогаем разработать оптимальную IT-стратегию и выбрать подходящие технологии для вашего бизнеса.</p>
+                            <a href="/services/it-consulting" class="btn">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="/services" class="btn btn-primary">Все услуги</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="testimonials-section">
+            <div class="container">
+                <h2>Отзывы клиентов</h2>
+                <div class="testimonials-slider">
+                    <div class="testimonial-item">
+                        <blockquote>
+                            <p>Сотрудничество с компанией превзошло все наши ожидания. Профессиональный подход, внимание к деталям и высокое качество работы — вот что отличает эту команду.</p>
+                            <footer>
+                                <cite>Иван Петров, ООО "Технологии будущего"</cite>
+                            </footer>
+                        </blockquote>
+                    </div>
+                    
+                    <div class="testimonial-item">
+                        <blockquote>
+                            <p>Благодаря внедренным решениям мы смогли оптимизировать бизнес-процессы и значительно увеличить эффективность работы. Рекомендуем эту компанию как надежного партнера.</p>
+                            <footer>
+                                <cite>Елена Сидорова, ЗАО "Инновации"</cite>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section">
+            <div class="container">
+                <h2>Готовы начать сотрудничество?</h2>
+                <p>Свяжитесь с нами, чтобы обсудить ваш проект и получить индивидуальное предложение.</p>
+                <a href="/contact" class="btn btn-primary">Связаться с нами</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col col-tablet-6 col-mobile-12">
+                    <h3>О компании</h3>
+                    <p>Мы предоставляем инновационные решения для бизнеса с 2010 года.</p>
+                </div>
+                
+                <div class="col col-tablet-6 col-mobile-12">
+                    <h3>Контакты</h3>
+                    <address>
+                        <p>Адрес: г. Москва, ул. Примерная, д. 123</p>
+                        <p>Телефон: <a href="tel:+71234567890">+7 (123) 456-78-90</a></p>
+                        <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Название компании. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <script src="/js/main.js" defer></script>
+    <script src="/js/responsive.js" defer></script>
+    <script src="/js/performance.js" defer></script>
+</body>
+</html> 

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Критические стили -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты | Свяжитесь с нами</title>
+    <meta name="description" content="Свяжитесь с нами по телефону, электронной почте или через форму обратной связи. Мы всегда рады ответить на ваши вопросы.">
+    
+    <!-- Open Graph для социальных сетей -->
+    <meta property="og:title" content="Контакты | Свяжитесь с нами">
+    <meta property="og:description" content="Свяжитесь с нами по телефону, электронной почте или через форму обратной связи.">
+    <meta property="og:image" content="https://example.com/images/contact-og-image.jpg">
+    <meta property="og:url" content="https://example.com/contact">
+    <meta property="og:type" content="website">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://example.com/contact">
+    
+    <!-- Предзагрузка критических ресурсов -->
+    <link rel="preload" href="/fonts/roboto.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/css/critical.css" as="style">
+    
+    <!-- Стили -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    
+    <!-- Структурированные данные -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Название компании",
+        "url": "https://example.com",
+        "logo": "https://example.com/images/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+7-123-456-7890",
+            "contactType": "customer service",
+            "areaServed": "RU",
+            "availableLanguage": ["Russian", "English"]
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Примерная, д. 123",
+            "addressLocality": "Москва",
+            "postalCode": "123456",
+            "addressCountry": "RU"
+        }
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/images/logo.svg" alt="Логотип компании" width="150" height="50">
+                    </a>
+                </div>
+                
+                <nav class="desktop-menu hide-on-mobile">
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about">О нас</a></li>
+                        <li><a href="/services">Услуги</a></li>
+                        <li><a href="/contact" aria-current="page">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="menu-toggle hide-on-desktop" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="sr-only">Меню</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-menu" id="mobile-menu">
+            <nav>
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/about">О нас</a></li>
+                    <li><a href="/services">Услуги</a></li>
+                    <li><a href="/contact" aria-current="page">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="container">
+                <h1>Свяжитесь с нами</h1>
+                <p class="lead">Мы всегда рады ответить на ваши вопросы</p>
+            </div>
+        </section>
+        
+        <section class="contact-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-tablet-6 col-mobile-12">
+                        <h2>Наши контакты</h2>
+                        <address>
+                            <div class="contact-item">
+                                <i class="icon icon-location"></i>
+                                <div>
+                                    <h3>Адрес</h3>
+                                    <p>г. Москва, ул. Примерная, д. 123</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="icon icon-phone"></i>
+                                <div>
+                                    <h3>Телефон</h3>
+                                    <p><a href="tel:+71234567890">+7 (123) 456-78-90</a></p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="icon icon-email"></i>
+                                <div>
+                                    <h3>Email</h3>
+                                    <p><a href="mailto:info@example.com">info@example.com</a></p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="icon icon-clock"></i>
+                                <div>
+                                    <h3>Время работы</h3>
+                                    <p>Пн-Пт: 9:00 - 18:00</p>
+                                    <p>Сб-Вс: Выходной</p>
+                                </div>
+                            </div>
+                        </address>
+                        
+                        <div class="social-links">
+                            <h3>Мы в социальных сетях</h3>
+                            <ul>
+                                <li><a href="https://facebook.com/example" target="_blank" rel="noopener" aria-label="Facebook"><i class="icon icon-facebook"></i></a></li>
+                                <li><a href="https://twitter.com/example" target="_blank" rel="noopener" aria-label="Twitter"><i class="icon icon-twitter"></i></a></li>
+                                <li><a href="https://instagram.com/example" target="_blank" rel="noopener" aria-label="Instagram"><i class="icon icon-instagram"></i></a></li>
+                                <li
